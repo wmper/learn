@@ -28,6 +28,8 @@ namespace Example.IHostService
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    ConfigurationManager.Configuration = hostContext.Configuration;
+
                     services.AddHostedService<TimedHostedService>();
                 })
                 .ConfigureLogging((hostContext, configLogging) =>
