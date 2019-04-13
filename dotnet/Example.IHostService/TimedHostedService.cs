@@ -27,7 +27,7 @@ namespace Example.IHostService
 
             _timer = new Timer(state =>
             {
-                _logger.LogInformation("Timed Background Service is working.");
+                _logger.LogInformation($"Timed Background Service is working.{ConfigurationManager.Configuration.GetSection("serverUrl").Value}");
             }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
             return Task.CompletedTask;
