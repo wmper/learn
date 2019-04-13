@@ -24,8 +24,10 @@ namespace Example.IHostService
                 })
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
+                    // 设置根目录
                     configApp.SetBasePath(Directory.GetCurrentDirectory());
-                    configApp.AddJsonFile("appsettings.json", optional: true);
+
+                    // 根据环境变量读取配置
                     configApp.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
                 })
                 .ConfigureServices((hostContext, services) =>
