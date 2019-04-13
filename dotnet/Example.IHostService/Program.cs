@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 
 namespace Example.IHostService
 {
@@ -23,6 +24,7 @@ namespace Example.IHostService
                 })
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
+                    configApp.SetBasePath(Directory.GetCurrentDirectory());
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
                 })
