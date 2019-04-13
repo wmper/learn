@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Example.IHostService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "environment": "Development"
+      }
+    }
+  }
+}
