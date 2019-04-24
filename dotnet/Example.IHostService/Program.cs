@@ -26,7 +26,7 @@ namespace Example.IHostService
                 {
                     // 设置根目录
                     configApp.SetBasePath(Directory.GetCurrentDirectory());
-
+                    
                     // 根据环境变量读取配置
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
@@ -39,7 +39,7 @@ namespace Example.IHostService
                 })
                 .ConfigureLogging((hostContext, configLogging) =>
                 {
-                    configLogging.AddConsole();
+                configLogging.AddConsole();
                     configLogging.AddDebug();
                 })
                 .Build();
