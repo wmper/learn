@@ -19,7 +19,7 @@ namespace Example.Quartz
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _log.LogInformation("QuartzHostService Start...");
+            _log.LogInformation("QuartzHostService Starting...");
 
             await _scheduler.Start(cancellationToken);
         }
