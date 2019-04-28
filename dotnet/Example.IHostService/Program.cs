@@ -28,8 +28,8 @@ namespace Example.IHostService
                     configApp.SetBasePath(Directory.GetCurrentDirectory());
 
                     // 根据环境变量读取配置
-                    configApp.AddJsonFile("appsettings.json", optional: true);
-                    configApp.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
+                    configApp.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    configApp.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {

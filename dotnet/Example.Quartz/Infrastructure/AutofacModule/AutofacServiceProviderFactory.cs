@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.Quartz;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Specialized;
@@ -11,6 +12,18 @@ namespace Example.Quartz.Infrastructure.AutofacModule
     {
         public ContainerBuilder CreateBuilder(IServiceCollection services)
         {
+            var properties = ConfigurationManager.Configuration.GetSection("quartz").Get<Properties>();
+
+            var config = new NameValueCollection {
+                            { "quartz.scheduler.instanceName", properties.Scheduler.InstanceName },
+                            { "quartz.threadPool.type", properties.ThreadPool.Type },
+                            { "quartz.threadPool.threadCount", properties.ThreadPool.ThreadCount.ToString() },
+                            { "quartz.jobStore.misfireThreshold", properties.JobStore.MisfireThreshold.ToString() },
+                            { "quartz.plugin.jobInitializer.type" ,properties.Plugin.JobInitializer.Type},
+                            { "quartz.plugin.jobInitializer.fileNames", properties.Plugin.JobInitializer.FileNames},
+                            { "quartz.plugin.jobInitializer.failOnFileNotFound", properties.Plugin.JobInitializer.FailOnFileNotFound.ToString() },
+                            { "quartz.plugin.jobInitializer.scanInterval" , properties.Plugin.JobInitializer.ScanInterval.ToString()}
+                        };
             var builder = new ContainerBuilder();
 
             builder.Populate(services);
@@ -19,17 +32,6 @@ namespace Example.Quartz.Infrastructure.AutofacModule
             {
                 ConfigurationProvider = c =>
                 {
-                    var config = new NameValueCollection {
-                            { "quartz.scheduler.instanceName", "Example.Quartz" },
-                            { "quartz.threadPool.type", "Quartz.Simpl.SimpleThreadPool, Quartz" },
-                            { "quartz.threadPool.threadCount", "10" },
-                            { "quartz.jobStore.misfireThreshold", "60000" },
-                            { "quartz.plugin.jobInitializer.type" ,"Quartz.Plugin.Xml.XMLSchedulingDataProcessorPlugin, Quartz.Plugins" },
-                            { "quartz.plugin.jobInitializer.fileNames", "quartz_jobs.xml" },
-                            { "quartz.plugin.jobInitializer.failOnFileNotFound", "true" },
-                            { "quartz.plugin.jobInitializer.scanInterval" , "120" }
-                        };
-
                     return config;
                 }
             });
