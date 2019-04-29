@@ -41,8 +41,7 @@ namespace Example.Upload.Controllers
             var section = await reader.ReadNextSectionAsync();
             while (section != null)
             {
-                ContentDispositionHeaderValue contentDisposition;
-                var hasContentDispositionHeader = ContentDispositionHeaderValue.TryParse(section.ContentDisposition, out contentDisposition);
+                var hasContentDispositionHeader = ContentDispositionHeaderValue.TryParse(section.ContentDisposition, out ContentDispositionHeaderValue contentDisposition);
 
                 if (hasContentDispositionHeader)
                 {
@@ -75,9 +74,9 @@ namespace Example.Upload.Controllers
                         {
                             // The value length limit is enforced by MultipartBodyLengthLimit
                             var value = await streamReader.ReadToEndAsync();
-                            if (String.Equals(value, "undefined", StringComparison.OrdinalIgnoreCase))
+                            if (string.Equals(value, "undefined", StringComparison.OrdinalIgnoreCase))
                             {
-                                value = String.Empty;
+                                value = string.Empty;
                             }
                             formAccumulator.Append(key, value);
 
