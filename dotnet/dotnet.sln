@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.NPOI", "Example.NPO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDK", "..\SDK\SDK\SDK.csproj", "{B384DFAD-9462-4C79-97B5-29D5F4B58662}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Quartz", "Example.Quartz\Example.Quartz.csproj", "{B2916638-8D2B-4A1A-86BA-9CCEDEBDB3DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Quartz", "Example.Quartz\Example.Quartz.csproj", "{B2916638-8D2B-4A1A-86BA-9CCEDEBDB3DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Upload", "Example.Upload\Example.Upload.csproj", "{2D3EDA9B-5E9F-46A5-94E2-ED00CBC58B53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B2916638-8D2B-4A1A-86BA-9CCEDEBDB3DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2916638-8D2B-4A1A-86BA-9CCEDEBDB3DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2916638-8D2B-4A1A-86BA-9CCEDEBDB3DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3EDA9B-5E9F-46A5-94E2-ED00CBC58B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3EDA9B-5E9F-46A5-94E2-ED00CBC58B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3EDA9B-5E9F-46A5-94E2-ED00CBC58B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3EDA9B-5E9F-46A5-94E2-ED00CBC58B53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
