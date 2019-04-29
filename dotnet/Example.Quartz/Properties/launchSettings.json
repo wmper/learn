@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Example.Quartz": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "environment": "Development"
+      }
+    }
+  }
+}
