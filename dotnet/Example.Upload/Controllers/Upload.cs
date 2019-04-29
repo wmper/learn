@@ -17,6 +17,7 @@ namespace Example.Upload.Controllers
     {
         private readonly UploadSettings settings = ConfigurationManager.Configuration.GetSection("upload").Get<UploadSettings>();
 
+        [HttpPost]
         public string Post(IEnumerable<IFormFile> files)
         {
             var dir = AppDomain.CurrentDomain.BaseDirectory + settings.Dir;
