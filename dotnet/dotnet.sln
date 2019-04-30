@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Upload", "Example.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.RSA", "Example.RSA\Example.RSA.csproj", "{A5994DED-80C9-4A26-A17C-25709C69E63A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Canal", "Example.Canal\Example.Canal.csproj", "{492D5368-82E8-4C83-8300-7EE6DB295BDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A5994DED-80C9-4A26-A17C-25709C69E63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5994DED-80C9-4A26-A17C-25709C69E63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5994DED-80C9-4A26-A17C-25709C69E63A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{492D5368-82E8-4C83-8300-7EE6DB295BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{492D5368-82E8-4C83-8300-7EE6DB295BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{492D5368-82E8-4C83-8300-7EE6DB295BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{492D5368-82E8-4C83-8300-7EE6DB295BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
