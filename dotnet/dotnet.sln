@@ -15,11 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Quartz", "Example.Q
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Upload", "Example.Upload\Example.Upload.csproj", "{2D3EDA9B-5E9F-46A5-94E2-ED00CBC58B53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.RSA", "Example.RSA\Example.RSA.csproj", "{A5994DED-80C9-4A26-A17C-25709C69E63A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.RSA", "Example.RSA\Example.RSA.csproj", "{A5994DED-80C9-4A26-A17C-25709C69E63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Canal", "Example.Canal\Example.Canal.csproj", "{492D5368-82E8-4C83-8300-7EE6DB295BDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Canal", "Example.Canal\Example.Canal.csproj", "{492D5368-82E8-4C83-8300-7EE6DB295BDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Picture", "Example.Picture\Example.Picture.csproj", "{9398B0CF-D049-48CF-B300-0CBFEF429AE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Picture", "Example.Picture\Example.Picture.csproj", "{9398B0CF-D049-48CF-B300-0CBFEF429AE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Zookeeper", "Example.Zookeeper\Example.Zookeeper.csproj", "{5D89B975-E938-43F5-B3F6-DB2120F822AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Zookeeper.FK", "Example.Zookeeper.FK\Example.Zookeeper.FK.csproj", "{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,14 @@ Global
 		{9398B0CF-D049-48CF-B300-0CBFEF429AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9398B0CF-D049-48CF-B300-0CBFEF429AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9398B0CF-D049-48CF-B300-0CBFEF429AE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D89B975-E938-43F5-B3F6-DB2120F822AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D89B975-E938-43F5-B3F6-DB2120F822AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D89B975-E938-43F5-B3F6-DB2120F822AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D89B975-E938-43F5-B3F6-DB2120F822AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
