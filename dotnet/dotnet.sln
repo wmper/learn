@@ -21,9 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Canal", "Example.Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Picture", "Example.Picture\Example.Picture.csproj", "{9398B0CF-D049-48CF-B300-0CBFEF429AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Zookeeper", "Example.Zookeeper\Example.Zookeeper.csproj", "{5D89B975-E938-43F5-B3F6-DB2120F822AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Zookeeper", "Example.Zookeeper\Example.Zookeeper.csproj", "{5D89B975-E938-43F5-B3F6-DB2120F822AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Zookeeper.FK", "Example.Zookeeper.FK\Example.Zookeeper.FK.csproj", "{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{8372E9A9-7233-4F4C-8C8D-DE6F2B243E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Produce", "RabbitMQ.Produce\RabbitMQ.Produce.csproj", "{AF2E923A-39FF-49F9-AA48-7A6FCFC77769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Consume", "RabbitMQ.Consume\RabbitMQ.Consume.csproj", "{66417DF7-140F-4F05-ABF0-B67833D2E93B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,9 +81,21 @@ Global
 		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C0CA1A4-E496-4889-8DB7-A30ED021CD15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF2E923A-39FF-49F9-AA48-7A6FCFC77769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF2E923A-39FF-49F9-AA48-7A6FCFC77769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF2E923A-39FF-49F9-AA48-7A6FCFC77769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF2E923A-39FF-49F9-AA48-7A6FCFC77769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66417DF7-140F-4F05-ABF0-B67833D2E93B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66417DF7-140F-4F05-ABF0-B67833D2E93B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66417DF7-140F-4F05-ABF0-B67833D2E93B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66417DF7-140F-4F05-ABF0-B67833D2E93B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF2E923A-39FF-49F9-AA48-7A6FCFC77769} = {8372E9A9-7233-4F4C-8C8D-DE6F2B243E1A}
+		{66417DF7-140F-4F05-ABF0-B67833D2E93B} = {8372E9A9-7233-4F4C-8C8D-DE6F2B243E1A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04CD75A4-3E55-45C0-BE6F-B559A2F2AB1A}
