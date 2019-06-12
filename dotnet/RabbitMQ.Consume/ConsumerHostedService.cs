@@ -22,7 +22,6 @@ namespace RabbitMQ.Consume
                 HostName = "localhost",
                 Port = 5672
             };
-
             _conn = factory.CreateConnection();
 
             var channel = _conn.CreateModel();
@@ -30,9 +29,10 @@ namespace RabbitMQ.Consume
             //channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 
             var consumer = new EventingBasicConsumer(channel);
-            consumer.Received += (ch, ea) =>
+            consumer.Received += (model, ea) =>
             {
                 var body = ea.Body;
+                
                 // ... process the message
                 var msg = Encoding.UTF8.GetString(body);
                 Console.WriteLine(msg);
@@ -42,6 +42,7 @@ namespace RabbitMQ.Consume
 
                 //channel.BasicAck(ea.DeliveryTag, true);
             };
+
             var consumerTag = channel.BasicConsume(queue: "test.queue", autoAck: false, consumerTag: "consumer-test" + new Random().Next(1, 9), consumer: consumer);
 
             return Task.CompletedTask;
