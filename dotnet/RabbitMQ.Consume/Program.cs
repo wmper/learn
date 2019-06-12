@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Example.IHostService
+namespace RabbitMQ.Consume
 {
     class Program
     {
@@ -32,9 +32,7 @@ namespace Example.IHostService
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    ConfigurationManager.Configuration = hostContext.Configuration;
-
-                    services.AddHostedService<TimedHostedService>();
+                    services.AddHostedService<ConsumerHostedService>();
                 })
                 .ConfigureLogging((hostContext, configLogging) =>
                 {
