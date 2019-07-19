@@ -16,7 +16,6 @@ namespace ApiGateway
             WebHost.CreateDefaultBuilder(args)
                    .UseKestrel()
                    .UseContentRoot(Directory.GetCurrentDirectory())
-                   .UseUrls("http://localhost:7000")
                    .ConfigureAppConfiguration((hostingContext, config) =>
                    {
                        config

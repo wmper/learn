@@ -1,7 +1,14 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace Example.Consul.ServiceB
+namespace Example.Consul.ServiceC
 {
     public class Program
     {
@@ -12,8 +19,6 @@ namespace Example.Consul.ServiceB
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseKestrel()
-                .UseUrls("http://localhost:9000")
                 .UseStartup<Startup>();
     }
 }
