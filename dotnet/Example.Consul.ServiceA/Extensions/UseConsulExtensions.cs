@@ -94,15 +94,15 @@ namespace Example.Consul.ServiceA.Extensions
         class ConsulConfig
         {
             public string Address { get; set; }
-            public int Port { get; set; }
+            public int Port { get; set; } = 8500;
             public Service Service { get; set; }
         }
 
         class Service
         {
             public string Name { get; set; }
-            public string Address { get; set; }
-            public int Port { get; set; }
+            public string Address { get; set; } = "127.0.0.1";
+            public int Port { get; set; } = 80;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Example.Consul.ServiceA
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseConsul(applicationLifetime, Configuration);
             app.UseMvc();
         }
