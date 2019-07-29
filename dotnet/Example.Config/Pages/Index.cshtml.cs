@@ -1,6 +1,8 @@
 ﻿using Example.Config.Hubs;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
+using System;
 
 namespace Example.Config.Pages
 {
@@ -15,7 +17,9 @@ namespace Example.Config.Pages
 
         public void OnGet()
         {
-            //_hubContext.Clients.All.ReceiveMessage("ok");
+            var obj = new { Consul = new { Key1 = "value1", Key2 = "value2" } };
+
+            _hubContext.Clients.All.ReceiveMessage(JsonConvert.SerializeObject(obj));
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Example.Config.Client
         {
             Console.WriteLine("Hello World!");
 
-            var conn = new HubConnectionBuilder().WithUrl("http://localhost:5000/confighub").Build();
+            var conn = new HubConnectionBuilder().WithUrl("http://localhost:5000/configurehub").Build();
 
             conn.On<string>("ReceiveMessage", (message) =>
             {
@@ -25,6 +25,8 @@ namespace Example.Config.Client
             {
                 throw ex;
             }
+
+            Console.WriteLine("end..");
 
             Console.ReadLine();
         }
