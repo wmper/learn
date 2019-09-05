@@ -54,6 +54,12 @@ namespace Example.Bit62
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            // 指定长度数值转短码
+            var num = 236513265495;
+
+            Console.WriteLine(EncodeStr(num));
+            Console.Read();
         }
     }
 }
