@@ -49,51 +49,51 @@ namespace Example.Upload.Controllers
                     var newFileName = $"{Guid.NewGuid().ToN()}{ext}";
                     var path = dir + newFileName;
 
-                    using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+                    //using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+                    //{
+                    //    file.CopyTo(fs);
+                    //}
+
+                    ImageFormat format(string input)
                     {
-                        file.CopyTo(fs);
+                        switch (input)
+                        {
+                            case ".bmp":
+                                return ImageFormat.Bmp;
+                            case ".emf":
+                                return ImageFormat.Emf;
+                            case ".exif":
+                                return ImageFormat.Exif;
+                            case ".gif":
+                                return ImageFormat.Gif;
+                            case ".icon":
+                                return ImageFormat.Icon;
+                            case ".jpg":
+                            case ".jpeg":
+                                return ImageFormat.Jpeg;
+                            case ".memorybmp":
+                                return ImageFormat.MemoryBmp;
+                            case ".png":
+                                return ImageFormat.Png;
+                            case ".tiff":
+                                return ImageFormat.Tiff;
+                            case ".wmf":
+                                return ImageFormat.Wmf;
+                            default:
+                                return ImageFormat.Jpeg;
+                        }
                     }
 
-                    //ImageFormat format(string input)
-                    //{
-                    //    switch (input)
-                    //    {
-                    //        case ".bmp":
-                    //            return ImageFormat.Bmp;
-                    //        case ".emf":
-                    //            return ImageFormat.Emf;
-                    //        case ".exif":
-                    //            return ImageFormat.Exif;
-                    //        case ".gif":
-                    //            return ImageFormat.Gif;
-                    //        case ".icon":
-                    //            return ImageFormat.Icon;
-                    //        case ".jpg":
-                    //        case ".jpeg":
-                    //            return ImageFormat.Jpeg;
-                    //        case ".memorybmp":
-                    //            return ImageFormat.MemoryBmp;
-                    //        case ".png":
-                    //            return ImageFormat.Png;
-                    //        case ".tiff":
-                    //            return ImageFormat.Tiff;
-                    //        case ".wmf":
-                    //            return ImageFormat.Wmf;
-                    //        default:
-                    //            return ImageFormat.Jpeg;
-                    //    }
-                    //}
+                    // 去除 EXIF信息
+                    using (var stream = new MemoryStream())
+                    {
+                        file.CopyTo(stream);
 
-                    //// 去除 EXIF信息
-                    //using (var stream = new MemoryStream())
-                    //{
-                    //    file.CopyTo(stream);
+                        var image = Image.FromStream(stream);
+                        Bitmap bitmap = new Bitmap(image);
 
-                    //    var image = Image.FromStream(stream);
-                    //    Bitmap bitmap = new Bitmap(image);
-
-                    //    bitmap.Save(path, format(ext));
-                    //}
+                        bitmap.Save(path, format(ext));
+                    }
 
                     rs.RemoteUrl = $"{settings.Url}/{newFileName}";
                     rs.Message = "success";

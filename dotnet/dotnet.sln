@@ -57,7 +57,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Config.ClientA", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example.csproj", "{7D12FDEE-E633-4EB9-8A2C-3A3C6F952B95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Redis", "Example.Redis\Example.Redis.csproj", "{61ECA6C6-591E-4DD0-86BF-F892BEE9D93D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Redis", "Example.Redis\Example.Redis.csproj", "{61ECA6C6-591E-4DD0-86BF-F892BEE9D93D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Aspect", "Example.Aspect\Example.Aspect.csproj", "{16E4E428-D74B-4867-BB73-0BC3B1B9C9FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Bit62", "Example.Bit62\Example.Bit62.csproj", "{A793B3A3-C05E-462F-B3B7-C642549CCEA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +165,14 @@ Global
 		{61ECA6C6-591E-4DD0-86BF-F892BEE9D93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61ECA6C6-591E-4DD0-86BF-F892BEE9D93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61ECA6C6-591E-4DD0-86BF-F892BEE9D93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E4E428-D74B-4867-BB73-0BC3B1B9C9FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E4E428-D74B-4867-BB73-0BC3B1B9C9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E4E428-D74B-4867-BB73-0BC3B1B9C9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E4E428-D74B-4867-BB73-0BC3B1B9C9FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A793B3A3-C05E-462F-B3B7-C642549CCEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A793B3A3-C05E-462F-B3B7-C642549CCEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A793B3A3-C05E-462F-B3B7-C642549CCEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A793B3A3-C05E-462F-B3B7-C642549CCEA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
