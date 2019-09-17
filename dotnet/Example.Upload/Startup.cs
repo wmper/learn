@@ -28,6 +28,8 @@ namespace Example.Upload
             ConfigurationManager.Configuration = Configuration;
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddHostedService<CPUUsageHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
