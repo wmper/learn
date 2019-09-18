@@ -6,11 +6,13 @@ namespace Example.Bit62
 {
     class Program
     {
+        private static readonly string charArrayString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
         public static string EncodeStr(long num)
         {
             int scale = 62;
             StringBuilder sb = new StringBuilder();
-            char[] charArray = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            char[] charArray = charArrayString.ToCharArray();
 
             long remainder = 0;
 
@@ -35,7 +37,6 @@ namespace Example.Bit62
         public static long DecodeNum(string str)
         {
             int scale = 62;
-            string charArray = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
             // Trim the leading zeros first            
             str = Regex.Replace(str, "^0*", "");
@@ -44,7 +45,7 @@ namespace Example.Bit62
             int index = 0;
             for (int i = 0; i < str.Length; i++)
             {
-                index = charArray.IndexOf(str[i]);
+                index = charArrayString.IndexOf(str[i]);
                 num += (long)(index * (Math.Pow(scale, str.Length - i - 1)));
             }
 
