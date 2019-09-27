@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,28 +11,35 @@ using AspectCore.Extensions.DependencyInjection;
 using AspectCore.Injector;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Example {
-    public interface IMall {
-        void Write ();
+namespace Example
+{
+    public interface IMall
+    {
+        void Write();
     }
 
-    public class MallService : IMall {
-        public void Write () {
-            Console.WriteLine ("mall");
+    public class MallService : IMall
+    {
+        public void Write()
+        {
+            Console.WriteLine("mall");
         }
     }
-    public interface IUser {
-        IList<YieldTest> YieldTests (string id, IList<YieldTest> list);
+    public interface IUser
+    {
+        IList<YieldTest> YieldTests(string id, IList<YieldTest> list);
     }
 
-    public class UserService : IUser {
+    public class UserService : IUser
+    {
         [UseCache]
-        public IList<YieldTest> YieldTests (string id, IList<YieldTest> ls) {
+        public IList<YieldTest> YieldTests(string id, IList<YieldTest> ls)
+        {
             var list = new List<YieldTest> {
                 new YieldTest () { Name = "hello" }
             };
 
-            Console.WriteLine ("业务");
+            Console.WriteLine("业务");
 
             return list;
         }
@@ -39,27 +47,30 @@ namespace Example {
 
     enum Day : byte { Sat = 1, Sun, Mon, Tue, Wed, Thu, Fri }
 
-    public class UseCacheAttribute : AbstractInterceptorAttribute {
+    public class UseCacheAttribute : AbstractInterceptorAttribute
+    {
         [FromContainer]
         private IMall _mall { get; set; }
 
-        public override async Task Invoke (AspectContext context, AspectDelegate next) {
+        public override async Task Invoke(AspectContext context, AspectDelegate next)
+        {
             //var mall = context.ServiceProvider.GetService<IMall>();
-            _mall.Write ();
+            _mall.Write();
 
             object[] paramters = context.Parameters;
 
-            Console.WriteLine ("1:" + paramters[0].ToString ());
+            Console.WriteLine("1:" + paramters[0].ToString());
 
-            await next.Invoke (context);
+            await next.Invoke(context);
 
-            var obj = (IList<YieldTest>) context.ReturnValue;
+            var obj = (IList<YieldTest>)context.ReturnValue;
 
-            Console.WriteLine ("2:" + obj.FirstOrDefault ().Name);
+            Console.WriteLine("2:" + obj.FirstOrDefault().Name);
         }
     }
 
-    public class YieldTest {
+    public class YieldTest
+    {
         public string Name { get; set; }
         public int Age { get; set; }
         public string Province { get; set; }
@@ -67,7 +78,8 @@ namespace Example {
         public string Country { get; set; }
         public string Address { get; set; }
 
-        public IEnumerable<object> GetAtomicValues () {
+        public IEnumerable<object> GetAtomicValues()
+        {
             yield return Name;
             yield return Age;
             yield return Province;
@@ -76,8 +88,10 @@ namespace Example {
             yield return Address;
         }
     }
-    class Program {
-        static void Main (string[] args) {
+    class Program
+    {
+        static void Main(string[] args)
+        {
             //Console.WriteLine("thread-1:" + Thread.CurrentThread.ManagedThreadId);
 
             //var id = "1";
@@ -134,13 +148,43 @@ namespace Example {
             //Console.WriteLine(w16);
             //Console.WriteLine(w2);
 
-            Console.WriteLine ("the end.");
-            Console.Read ();
+            //创建一个ProcessStartInfo对象 使用系统shell 指定命令和参数 设置标准输出
+            var psi = new ProcessStartInfo("dotnet", "--info") { RedirectStandardOutput = true };
+            //启动
+            var proc = Process.Start(psi);
+            if (proc == null)
+            {
+                Console.WriteLine("Can not exec.");
+            }
+            else
+            {
+                Console.WriteLine("-------------Start read standard output--------------");
+                //开始读取
+                using (var sr = proc.StandardOutput)
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        Console.WriteLine(sr.ReadLine());
+                    }
+
+                    if (!proc.HasExited)
+                    {
+                        proc.Kill();
+                    }
+                }
+                Console.WriteLine("---------------Read end------------------");
+                Console.WriteLine($"Total execute time :{(proc.ExitTime - proc.StartTime).TotalMilliseconds} ms");
+                Console.WriteLine($"Exited Code ： {proc.ExitCode}");
+            }
+
+            Console.WriteLine("the end.");
+            Console.Read();
 
         }
 
-        static async Task TestAsync (int i) {
-            Console.WriteLine ("thread-4:" + Thread.CurrentThread.ManagedThreadId);
+        static async Task TestAsync(int i)
+        {
+            Console.WriteLine("thread-4:" + Thread.CurrentThread.ManagedThreadId);
 
             //await Task.Run(async () =>
             //{
@@ -151,19 +195,21 @@ namespace Example {
 
             //await Test2();
 
-            Console.WriteLine ("thread-5:" + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("thread-5:" + Thread.CurrentThread.ManagedThreadId);
         }
 
-        static void Test2 () {
-            Console.WriteLine ("thread-2:" + Thread.CurrentThread.ManagedThreadId);
+        static void Test2()
+        {
+            Console.WriteLine("thread-2:" + Thread.CurrentThread.ManagedThreadId);
 
-            var task = Task.Factory.StartNew (() => {
-                Thread.Sleep (2000);
+            var task = Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(2000);
 
-                Console.WriteLine ("thread-3:" + Thread.CurrentThread.ManagedThreadId);
+                Console.WriteLine("thread-3:" + Thread.CurrentThread.ManagedThreadId);
             });
 
-            task.Wait ();
+            task.Wait();
         }
     }
 }
