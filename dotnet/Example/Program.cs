@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -149,40 +150,50 @@ namespace Example
             //Console.WriteLine(w2);
 
             //创建一个ProcessStartInfo对象 使用系统shell 指定命令和参数 设置标准输出
-            var psi = new ProcessStartInfo("dotnet", "--info") { RedirectStandardOutput = true };
-            //启动
-            var proc = Process.Start(psi);
-            if (proc == null)
-            {
-                Console.WriteLine("Can not exec.");
-            }
-            else
-            {
-                Console.WriteLine("-------------Start read standard output--------------");
-                //开始读取
-                using (var sr = proc.StandardOutput)
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        Console.WriteLine(sr.ReadLine());
-                    }
+            //var psi = new ProcessStartInfo("dotnet", "--info") { RedirectStandardOutput = true };
+            ////启动
+            //var proc = Process.Start(psi);
+            //if (proc == null)
+            //{
+            //    Console.WriteLine("Can not exec.");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("-------------Start read standard output--------------");
+            //    //开始读取
+            //    using (var sr = proc.StandardOutput)
+            //    {
+            //        while (!sr.EndOfStream)
+            //        {
+            //            Console.WriteLine(sr.ReadLine());
+            //        }
 
-                    if (!proc.HasExited)
-                    {
-                        proc.Kill();
-                    }
-                }
-                Console.WriteLine("---------------Read end------------------");
-                Console.WriteLine($"Total execute time :{(proc.ExitTime - proc.StartTime).TotalMilliseconds} ms");
-                Console.WriteLine($"Exited Code ： {proc.ExitCode}");
-            }
+            //        if (!proc.HasExited)
+            //        {
+            //            proc.Kill();
+            //        }
+            //    }
+            //    Console.WriteLine("---------------Read end------------------");
+            //    Console.WriteLine($"Total execute time :{(proc.ExitTime - proc.StartTime).TotalMilliseconds} ms");
+            //    Console.WriteLine($"Exited Code ： {proc.ExitCode}");
+            //}
+
+            //for (int j = 0; j < 10; j++)
+            //    Console.WriteLine(DateTime.Now.Ticks);
+
+            //Console.WriteLine(int.MaxValue);
+
+            //var code = Guid.NewGuid().GetHashCode();
+            //Console.WriteLine(code);
+
+            //Console.WriteLine((int)(DateTime.Now.Ticks * code));
 
             Console.WriteLine("the end.");
             Console.Read();
 
         }
 
-        static async Task TestAsync(int i)
+        static void Test(int i)
         {
             Console.WriteLine("thread-4:" + Thread.CurrentThread.ManagedThreadId);
 

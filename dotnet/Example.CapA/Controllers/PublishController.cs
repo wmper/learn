@@ -17,7 +17,7 @@ namespace Example.CapA.Controllers
         [HttpGet("/adonet/transaction")]
         public IActionResult AdonetWithTransaction()
         {
-            using (var connection = new MySqlConnection("Server=39.108.11.143;Port=33306;Database=cap;Uid=cherry;Pwd=cherry123456!@#;"))
+            using (var connection = new MySqlConnection("Server=localhost;Port=3306;Database=cap;Uid=root;Pwd=;"))
             {
                 using (var transaction = connection.BeginTransaction(_capBus, autoCommit: true))
                 {
