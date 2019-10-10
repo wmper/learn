@@ -23,7 +23,7 @@ namespace Example.CapA
             services.AddCap(x =>
             {
                 x.UseMySql("Server=39.108.11.143;Port=33306;Database=cap;Uid=cherry;Pwd=cherry123456!@#;");
-                x.UseRabbitMQ("192.168.137.48");
+                x.UseRabbitMQ("192.168.137.20");
 
                 x.UseDashboard();
             });

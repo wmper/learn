@@ -15,13 +15,15 @@ namespace RabbitMQ.Produce
                 UserName = "guest",
                 Password = "guest",
                 VirtualHost = "/",
-                HostName = "localhost",
+                HostName = "192.168.137.20",
                 Port = 5672
             };
 
             var conn = factory.CreateConnection();
             
             var channel = conn.CreateModel();
+
+            //channel.ConfirmSelect();
 
             channel.ExchangeDeclare(exchange: "test.exchange", type: ExchangeType.Fanout, durable: true, autoDelete: false, arguments: null);
 
@@ -31,7 +33,7 @@ namespace RabbitMQ.Produce
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
 
-            for (var i = 1; i <= 10000000; i++)
+            for (var i = 1; i <= 10; i++)
             {
                 var msg = $"No:{i},hello world!time:-" + new Random().Next(1, 20);
                 var body = Encoding.UTF8.GetBytes(msg);
@@ -39,10 +41,12 @@ namespace RabbitMQ.Produce
                 
                 channel.BasicPublish(exchange: "test.exchange", routingKey: "test.key", basicProperties: properties, body: body);
                 Console.WriteLine("send." + msg);
+
+                //channel.WaitForConfirms();
             }
 
             Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
+            Console.Read();
         }
     }
 }

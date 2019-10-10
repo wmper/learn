@@ -19,7 +19,7 @@ namespace RabbitMQ.Consume
                 UserName = "guest",
                 Password = "guest",
                 VirtualHost = "/",
-                HostName = "localhost",
+                HostName = "192.168.137.20",
                 Port = 5672
             };
             _conn = factory.CreateConnection();
@@ -32,7 +32,7 @@ namespace RabbitMQ.Consume
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body;
-                
+
                 // ... process the message
                 var msg = Encoding.UTF8.GetString(body);
                 Console.WriteLine(msg);
@@ -40,7 +40,7 @@ namespace RabbitMQ.Consume
                 //var s = msg.Split('-')[1].ToString();
                 //Thread.Sleep(int.Parse(s) * 1000);
 
-                //channel.BasicAck(ea.DeliveryTag, true);
+                channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
             };
 
             var consumerTag = channel.BasicConsume(queue: "test.queue", autoAck: false, consumerTag: "consumer-test" + new Random().Next(1, 9), consumer: consumer);
