@@ -18,6 +18,7 @@ namespace Example.Aspect
         public void Write()
         {
             Console.WriteLine("mall");
+            throw new Exception("test");
         }
     }
 
@@ -36,7 +37,16 @@ namespace Example.Aspect
 
             Console.WriteLine("执行前:");
 
-            await next.Invoke(context);
+
+            try
+            {
+                await next.Invoke(context);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("exception.");
+            }
+
 
             // 方法返回值内容
             var obj = context.ReturnValue;
