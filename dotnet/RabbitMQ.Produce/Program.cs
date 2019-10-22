@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RabbitMQ.Client;
+using System;
 using System.Text;
-using RabbitMQ.Client;
 
 namespace RabbitMQ.Produce
 {
@@ -20,7 +20,7 @@ namespace RabbitMQ.Produce
             };
 
             var conn = factory.CreateConnection();
-            
+
             var channel = conn.CreateModel();
 
             //channel.ConfirmSelect();
@@ -38,7 +38,7 @@ namespace RabbitMQ.Produce
                 var msg = $"No:{i},hello world!time:-" + new Random().Next(1, 20);
                 var body = Encoding.UTF8.GetBytes(msg);
 
-                
+
                 channel.BasicPublish(exchange: "test.exchange", routingKey: "test.key", basicProperties: properties, body: body);
                 Console.WriteLine("send." + msg);
 
