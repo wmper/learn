@@ -5,24 +5,39 @@ using System;
 
 namespace Example.ES
 {
+    public class IElasticSearchConnection : ConnectionSettings
+    {
+        private static readonly Uri[] uris = new[]
+        {
+            new Uri("http://192.168.180.93:9200")
+        };
+        private static readonly IConnectionPool pool = new StickyConnectionPool(uris);
+
+        public IElasticSearchConnection() : base(pool)
+        {
+
+        }
+    }
+
+    public static class IElasticSearchConnectionExtensions
+    {
+        public static IElasticClient Client(this IElasticSearchConnection conn, string index)
+        {
+            conn.DefaultIndex(index);
+
+            return new ElasticClient(conn);
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
-            //var uris = new[]
-            //{
-            //    new Uri("http://192.168.180.93:9200")
-            //};
-            //var connectionPool = new SniffingConnectionPool(uris);
+            var conn = new IElasticSearchConnection();
 
-            //var settings = new ConnectionSettings(connectionPool);
-
-            var settings = new ConnectionSettings(new Uri("http://192.168.180.93:9200"));
-            settings.DefaultIndex("people");
-
-            var client = new ElasticClient(settings);
+            var client = conn.Client("people");
 
             //var person = new Person
             //{
@@ -48,38 +63,37 @@ namespace Example.ES
             //var response = client.IndexDocument(person);
             //Console.WriteLine(JsonConvert.SerializeObject(response));
 
-            //var searchResponse = client.Search<Person>(s => s
-            //                            .From(0)
-            //                            .Size(10)
-            //                            .Query(q => q
-            //                                 .Match(m => m
-            //                                    .Field(f => f.LastName)
-            //                                    .Query("Smith")
-            //                                 )
-            //                            )
-            //                        );
-
-            //var people = searchResponse.Documents;
-            //Console.WriteLine(JsonConvert.SerializeObject(people));
-
             var searchResponse = client.Search<Person>(s => s
-                                        .Size(0)
+                                        .From(0)
+                                        .Size(10)
                                         .Query(q => q
                                              .Match(m => m
-                                                .Field(f => f.FirstName)
-                                                .Query("Martijn")
-                                             )
-                                        )
-                                        .Aggregations(a => a
-                                            .Terms("last_names", ta => ta
                                                 .Field(f => f.LastName)
-                                            )
+                                                .Query("Smith")
+                                             )
                                         )
                                     );
 
-            var termsAggregation = searchResponse.Aggregations.Terms("last_names");
+            var people = searchResponse.Documents;
+            Console.WriteLine(JsonConvert.SerializeObject(people));
 
-            Console.WriteLine(JsonConvert.SerializeObject(termsAggregation));
+            //var searchResponse = client.Search<Person>(s => s
+            //                            .Size(0)
+            //                            .Query(q => q
+            //                                 .Match(m => m
+            //                                    .Field(f => f.FirstName)
+            //                                    .Query("Martijn")
+            //                                 )
+            //                            )
+            //                            .Aggregations(a => a
+            //                                .Terms("last_names", ta => ta
+            //                                    .Field(f => f.LastName)
+            //                                )
+            //                            )
+            //                        );
+
+            //var termsAggregation = searchResponse.Aggregations.Terms("last_names");
+            //Console.WriteLine(JsonConvert.SerializeObject(termsAggregation));
 
             Console.WriteLine("The End.");
             Console.ReadLine();
