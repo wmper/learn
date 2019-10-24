@@ -1,41 +1,15 @@
-﻿using Elasticsearch.Net;
-using Nest;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace Example.ES
 {
-    public class IElasticSearchConnection : ConnectionSettings
-    {
-        private static readonly Uri[] uris = new[]
-        {
-            new Uri("http://192.168.180.93:9200")
-        };
-        private static readonly IConnectionPool pool = new StickyConnectionPool(uris);
-
-        public IElasticSearchConnection() : base(pool)
-        {
-
-        }
-    }
-
-    public static class IElasticSearchConnectionExtensions
-    {
-        public static IElasticClient Client(this IElasticSearchConnection conn, string index)
-        {
-            conn.DefaultIndex(index);
-
-            return new ElasticClient(conn);
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
-            var conn = new IElasticSearchConnection();
+            var conn = new ElasticSearchConnection();
 
             var client = conn.Client("people");
 
@@ -98,12 +72,5 @@ namespace Example.ES
             Console.WriteLine("The End.");
             Console.ReadLine();
         }
-    }
-
-    public class Person
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
     }
 }
