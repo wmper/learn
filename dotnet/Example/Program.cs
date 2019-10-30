@@ -93,6 +93,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
+            #region
             //Console.WriteLine("thread-1:" + Thread.CurrentThread.ManagedThreadId);
 
             //var id = "1";
@@ -187,6 +188,9 @@ namespace Example
             //Console.WriteLine(code);
 
             //Console.WriteLine((int)(DateTime.Now.Ticks * code));
+
+            #endregion
+
 
             Console.WriteLine("the end.");
             Console.Read();
