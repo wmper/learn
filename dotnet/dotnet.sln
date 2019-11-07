@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.IHostService", "Example.IHostService\Example.IHostService.csproj", "{6F2F27A4-05B1-4F68-AEB7-3A97EA034007}"
 EndProject
@@ -73,7 +73,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.CapA", "Example.Cap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.CapB", "Example.CapB\Example.CapB.csproj", "{C29E6CCD-DD73-442A-BA56-CC13AE4E75F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.ES", "Example.ES\Example.ES.csproj", "{8CD7C49D-24C5-4123-8B73-5AC6707C64A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ES", "Example.ES\Example.ES.csproj", "{8CD7C49D-24C5-4123-8B73-5AC6707C64A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.ML", "Example.ML\Example.ML.csproj", "{A51BEEDB-F1C3-4791-BFFF-C7ACCBAD67B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -205,6 +207,10 @@ Global
 		{8CD7C49D-24C5-4123-8B73-5AC6707C64A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CD7C49D-24C5-4123-8B73-5AC6707C64A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CD7C49D-24C5-4123-8B73-5AC6707C64A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A51BEEDB-F1C3-4791-BFFF-C7ACCBAD67B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A51BEEDB-F1C3-4791-BFFF-C7ACCBAD67B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A51BEEDB-F1C3-4791-BFFF-C7ACCBAD67B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A51BEEDB-F1C3-4791-BFFF-C7ACCBAD67B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
