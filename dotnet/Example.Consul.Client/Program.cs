@@ -12,14 +12,13 @@ namespace Example.Consul.Client
         {
             Console.WriteLine("Hello World!");
 
-            var ip = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
-                    .Select(p => p.GetIPProperties())
-                    .SelectMany(p => p.UnicastAddresses)
-                    .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
-                    .FirstOrDefault()?.Address.ToString();
+            //var ip = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
+            //        .Select(p => p.GetIPProperties())
+            //        .SelectMany(p => p.UnicastAddresses)
+            //        .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
+            //        .FirstOrDefault()?.Address.ToString();
 
-
-            Console.WriteLine(ip);
+            //Console.WriteLine(ip);
 
             ConsulClient consul = new ConsulClient(c =>
            {
