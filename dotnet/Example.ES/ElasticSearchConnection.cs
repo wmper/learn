@@ -8,7 +8,7 @@ namespace Example.ES
     {
         private static readonly Uri[] uris = new[]
         {
-            new Uri("http://192.168.180.93:9200")
+            new Uri("http://192.168.137.100:9200")
         };
         private static readonly IConnectionPool pool = new StickyConnectionPool(uris);
 
