@@ -50,7 +50,7 @@ namespace Example.ES
 
             var peoples = new[] { person1, person2, person3 };
 
-            //client.DeleteMany(peoples);
+            client.DeleteMany(peoples);
 
             //client.Index(person1, i => i.Index("people"));
             //client.Index(new IndexRequest<Person>(person1, "people"));
@@ -64,9 +64,9 @@ namespace Example.ES
             //    }
             //}
 
-            //client.IndexDocument(person1);
-            //client.IndexDocument(person2);
-            //client.IndexDocument(person3);
+            client.IndexDocument(person1);
+            client.IndexDocument(person2);
+            client.IndexDocument(person3);
 
             //var response = client.IndexDocument(person1);
             //Console.WriteLine(JsonConvert.SerializeObject(response));
@@ -124,31 +124,32 @@ namespace Example.ES
             //    x=>x.Ids(t=>t.Values(1,2))
             //};
 
-            //var searchResponse = client.Search<Person>(s => s.From(0).Size(10).Query(q => q.Term(t => t.Tid, "3436c7790359fb75e050a8c002642eda")));
+            //var searchResponse = client.Search<Person>(s => s.From(0).Size(10).Query(q => q.Term(t => t.LastName, "smith")));
 
             //var searchResponse = client.Search<Person>(s => s.Query(q => q.MatchPhrase(m => m.Field(f => f.LastName).Query("Smith"))));
 
             //var person = client.Get<Person>(1).Source;
             //Console.WriteLine(JsonConvert.SerializeObject(person));
 
-            var searchResponse = client.Search<Person>(s=>s.Query(q=>q.Terms(t=>t.Field(f=>f.Id).Terms(1,2))));
+            var searchResponse = client.Search<Person>(s => s.Query(q => q.Terms(t => t.Field(f => f.LastName).Terms("smith", "laarman"))));
 
             var people = searchResponse.Documents;
             Console.WriteLine(JsonConvert.SerializeObject(people));
 
-            // var searchResponse2 = client.Search<Person>(s => s
-            //                             .Query(q => q
-            //                                  .MatchAll()
-            //                             )
-            //                             .Aggregations(a => a
-            //                                 .Terms("lastName", ta => ta
-            //                                     .Field(f => f.LastName)
-            //                                 )
-            //                             )
-            //                         );
+            //var searchResponse2 = client.Search<Person>(s => s
+            //                            .Size(0)
+            //                            .Query(q => q
+            //                                 .Term(t => t.LastName, "smith")
+            //                            )
+            //                            .Aggregations(a => a
+            //                                .Terms("lastName", ta => ta
+            //                                    .Field(f => f.LastName)
+            //                                )
+            //                            )
+            //                        );
 
-            // var termsAggregation = searchResponse2.Aggregations.Terms("lastName");
-            // Console.WriteLine(JsonConvert.SerializeObject(termsAggregation));
+            //var termsAggregation = searchResponse2.Aggregations.Terms("lastName");
+            //Console.WriteLine(JsonConvert.SerializeObject(termsAggregation));
 
             Console.WriteLine("The End.");
             //Console.ReadLine();
