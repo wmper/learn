@@ -1,6 +1,8 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Data;
+using ServiceStack.OrmLite;
 using System;
+using System.Collections.Generic;
 
 namespace Example.ML
 {
@@ -10,46 +12,42 @@ namespace Example.ML
         {
             Console.WriteLine("Hello World!");
 
+            var dbFactory = new OrmLiteConnectionFactory("Server=127.0.0.1;Port=3306;Database=cherry;Uid=root;Pwd=;SslMode=None;", MySqlDialect.Provider);
+
+            var list = new List<SSQDto>();
+            using (var db = dbFactory.Open())
+            {
+                var query = db.From<SSQ>().Where(x => x.No > 19000 && x.No < 20003);
+
+                list = db.Select<SSQDto>(query);
+            }
+
             MLContext mlContext = new MLContext();
 
-            // 1. Import or create training data
-            HouseData[] houseData = {
-               new HouseData() { Size = 1.1F, Price = 1.2F },
-               new HouseData() { Size = 1.9F, Price = 2.3F },
-               new HouseData() { Size = 2.8F, Price = 3.0F },
-               new HouseData() { Size = 3.4F, Price = 3.7F }
-            };
-
-            IDataView trainingData = mlContext.Data.LoadFromEnumerable(houseData);
+            IDataView trainingData = mlContext.Data.LoadFromEnumerable(list.ToArray());
 
             // 2. Specify data preparation and model training pipeline
-            var pipeline = mlContext.Transforms.Concatenate("Features", new[] { "Size" })
-                .Append(mlContext.Regression.Trainers.Sdca(labelColumnName: "Price", maximumNumberOfIterations: 100));
+            var pipeline = mlContext.Transforms.Concatenate("Features", new[] { "H1" });
+
+            pipeline.Append(mlContext.Regression.Trainers.Sdca(labelColumnName: "H2", maximumNumberOfIterations: 100));
 
             // 3. Train model
             var model = pipeline.Fit(trainingData);
 
             // 4. Make a prediction
-            var size = new HouseData() { Size = 2.5F };
-            var price = mlContext.Model.CreatePredictionEngine<HouseData, Prediction>(model).Predict(size);
+            var input = new SSQDto() { H1 = 9 };
 
-            Console.WriteLine($"Predicted price for size: {size.Size} sq ft= {price.Price}");
+            var rs = mlContext.Model.CreatePredictionEngine<SSQDto, Prediction>(model).Predict(input);
 
-            // Predicted price for size: 2500 sq ft= $261.98k
+            Console.WriteLine($"Predicted total : {rs.H2}");
 
             Console.Read();
         }
     }
 
-    public class HouseData
-    {
-        public float Size { get; set; }
-        public float Price { get; set; }
-    }
-
     public class Prediction
     {
         [ColumnName("Score")]
-        public float Price { get; set; }
+        public int H2 { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -191,6 +192,16 @@ namespace Example
 
             #endregion
 
+            ParameterExpression left = Expression.Parameter(typeof(int), "m");//int类型的，参数名称为m
+            ConstantExpression right = Expression.Constant(10, typeof(int));//常量表达式树，10
+            //进行左边是否大于右边的判断
+            var binaryExpression = Expression.GreaterThan(left, right);
+
+            Console.WriteLine(binaryExpression.ToString());
+
+            var lambda = Expression.Lambda<Func<int, bool>>(binaryExpression, left).Compile();//构建成lambda表达式
+
+            Console.WriteLine(lambda(5).ToString());
 
             Console.WriteLine("the end.");
             Console.Read();
